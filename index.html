@@ -1,0 +1,47 @@
+const SITES = [
+  {id:1,nom:"2180 ch. Sainte-Foy",sta:"Lavigerie",pot:"fort",score:88,lat:46.7820,lng:-71.2980,dist:120,sup:4200,zon:"Commercial mixte",prop:"Société privée",bati:"Stationnement de surface",age:null,ratio:"Très favorable",usage:"Sous-utilisé",svcs:["Requalification","Densification verticale","Design mixte"],note:"Stationnement de surface en zone TOD. Fort potentiel de densification vertical. Propriétaire unique — contact ciblé recommandé.",cr:{prox:95,sutil:90,bati:85,zon:88,prop:82}},
+  {id:2,nom:"1250 av. Myrand",sta:"Myrand",pot:"fort",score:82,lat:46.7775,lng:-71.2940,dist:95,sup:3100,zon:"Résidentiel haute densité",prop:"Particulier",bati:"Bâtiment 1960 dégradé",age:64,ratio:"Favorable",usage:"Sous-exploité",svcs:["Démolition-remplacement","Design résidentiel"],note:"Bâtiment vieillissant avec ratio valeur terrain/bâtiment très favorable. Propriétaire individuel accessible.",cr:{prox:98,sutil:75,bati:90,zon:80,prop:68}},
+  {id:3,nom:"710 boul. Charest O.",sta:"Charest",pot:"fort",score:79,lat:46.8085,lng:-71.2550,dist:180,sup:6800,zon:"Commercial / industrie légère",prop:"Fiducie familiale",bati:"Entrepôt 1 étage",age:47,ratio:"Favorable",usage:"Sous-utilisé",svcs:["Requalification commerciale","Logement mixte"],note:"Grand terrain plat, faible emprise bâtie. Zonage en transition anticipée avec le tramway.",cr:{prox:82,sutil:88,bati:78,zon:72,prop:75}},
+  {id:4,nom:"455 rue de la Couronne",sta:"Saint-Roch",pot:"fort",score:76,lat:46.8125,lng:-71.2190,dist:210,sup:2400,zon:"Résidentiel mixte",prop:"Particulier",bati:"Maison 1 étage",age:76,ratio:"Favorable",usage:"Sous-exploité",svcs:["Intensification","Conception résidentielle"],note:"Bâti ancien sur grand terrain. Secteur en forte pression de densification.",cr:{prox:78,sutil:72,bati:85,zon:76,prop:70}},
+  {id:5,nom:"1120 rue Saint-Vallier E.",sta:"Saint-Roch",pot:"fort",score:74,lat:46.8140,lng:-71.2120,dist:255,sup:2100,zon:"Mixte commercial",prop:"Succession",bati:"Immeuble commercial 2 étages",age:56,ratio:"Favorable",usage:"Partiellement vacant",svcs:["Requalification","Logement dessus commercial"],note:"Propriété en succession — souvent plus disponible à la vente. Secteur dynamique en transformation.",cr:{prox:76,sutil:78,bati:70,zon:80,prop:65}},
+  {id:6,nom:"1890 av. Belvédère",sta:"Belvédère",pot:"fort",score:71,lat:46.7860,lng:-71.3060,dist:160,sup:3800,zon:"Commercial de corridor",prop:"Particulier (2 lots contigus)",bati:"Motel désaffecté",age:52,ratio:"Favorable",usage:"Vacant",svcs:["Démolition-remplacement","Résidentiel dense","Design urbain"],note:"Motel désaffecté sur 2 lots contigus. Opportunité de projet résidentiel de masse en TOD.",cr:{prox:85,sutil:92,bati:75,zon:62,prop:42}},
+  {id:7,nom:"3020 ch. des Quatre-Bourgeois",sta:"Quatre-Bourgeois",pot:"moyen",score:61,lat:46.7720,lng:-71.3280,dist:320,sup:2800,zon:"Résidentiel moyen",prop:"Copropriété",bati:"Immeuble 3 étages, 1985",age:39,ratio:"Neutre",usage:"Partiellement occupé",svcs:["Agrandissement","Optimisation énergétique"],note:"Copropriété — décision collective complexe. Potentiel réel mais délais longs.",cr:{prox:65,sutil:55,bati:58,zon:62,prop:65}},
+  {id:8,nom:"222 rue du Roi",sta:"Charest",pot:"moyen",score:63,lat:46.8095,lng:-71.2450,dist:230,sup:1600,zon:"Mixte centre-ville",prop:"Société immobilière",bati:"Immeuble commercial 3 étages, 1978",age:46,ratio:"Favorable",usage:"Mixte actif",svcs:["Surélévation","Conversion partielle résidentielle"],note:"Société immobilière professionnelle. Peut être réceptive à un projet de surélévation bien documenté.",cr:{prox:72,sutil:58,bati:65,zon:72,prop:48}},
+  {id:9,nom:"890 boul. René-Lévesque O.",sta:"Grande-Allée",pot:"moyen",score:58,lat:46.8028,lng:-71.2340,dist:290,sup:1900,zon:"Commercial",prop:"REIT institutionnel",bati:"Immeuble bureaux 4 étages",age:32,ratio:"Neutre",usage:"Partiellement vacant",svcs:["Conversion résidentielle","Requalification"],note:"Propriétaire institutionnel — cycle décisionnel long. Vacance post-pandémie crée une opportunité réelle.",cr:{prox:68,sutil:70,bati:48,zon:55,prop:50}},
+  {id:10,nom:"345 rue des Commissaires E.",sta:"Port / Limoilou",pot:"moyen",score:56,lat:46.8175,lng:-71.2000,dist:195,sup:5500,zon:"Industriel léger / mixte",prop:"Société commerciale",bati:"Entrepôt frigorifique désaffecté",age:60,ratio:"Favorable",usage:"Vacant",svcs:["Requalification industrielle","Résidentiel-commercial"],note:"Site vacant en zone de transition portuaire. Fort potentiel à moyen terme si rezonage confirmé.",cr:{prox:72,sutil:80,bati:55,zon:38,prop:38}},
+  {id:11,nom:"1640 rue de la Sapinière",sta:"Charlesbourg",pot:"moyen",score:54,lat:46.8480,lng:-71.2680,dist:380,sup:3500,zon:"Commercial de proximité",prop:"Particulier",bati:"Commercial 1 étage, 1972",age:52,ratio:"Neutre",usage:"Commerces actifs",svcs:["Densification par surélévation","Mixité"],note:"Occupants actuels actifs — transition complexe. Zonage favorable mais friction opérationnelle.",cr:{prox:55,sutil:52,bati:58,zon:60,prop:48}},
+  {id:12,nom:"2340 av. de Vitré",sta:"Limoilou",pot:"moyen",score:51,lat:46.8210,lng:-71.2050,dist:410,sup:2200,zon:"Résidentiel faible densité",prop:"Particulier",bati:"Duplex 1955",age:69,ratio:"Légèrement favorable",usage:"Occupé",svcs:["Remplacement","Design résidentiel"],note:"Bâti vieillissant mais zonage contraignant. Rezonage possible à moyen terme.",cr:{prox:50,sutil:55,bati:60,zon:42,prop:48}},
+  {id:13,nom:"560 rue Saint-Paul",sta:"Vieux-Québec",pot:"faible",score:34,lat:46.8162,lng:-71.2065,dist:520,sup:900,zon:"Patrimonial protégé",prop:"Particulier",bati:"Immeuble XIXe siècle",age:130,ratio:"Défavorable",usage:"Occupé — locatif",svcs:["Mise en valeur patrimoniale"],note:"Zone patrimoniale contrainte. Possibilité d'intervention légère uniquement.",cr:{prox:35,sutil:28,bati:42,zon:22,prop:45}},
+  {id:14,nom:"4100 boul. Wilfrid-Hamel",sta:"Hamel",pot:"faible",score:38,lat:46.8310,lng:-71.2820,dist:480,sup:5100,zon:"Industriel",prop:"Ville de Québec",bati:"Site industriel désaffecté",age:null,ratio:"Incertain",usage:"Vacant",svcs:["Décontamination","Requalification longue"],note:"Site municipal — processus politique lourd. Contamination probable. Horizon 10+ ans.",cr:{prox:40,sutil:55,bati:30,zon:28,prop:38}},
+  {id:15,nom:"980 rue Bouvier",sta:"Estimauville",pot:"faible",score:31,lat:46.8390,lng:-71.2340,dist:550,sup:1500,zon:"Résidentiel faible densité",prop:"Particulier",bati:"Résidence unifamiliale, 2003",age:22,ratio:"Défavorable",usage:"Occupé propriétaire",svcs:["Non prioritaire"],note:"Bâti récent, propriétaire occupant, zonage contraignant. Peu de leviers disponibles.",cr:{prox:32,sutil:20,bati:28,zon:35,prop:40}}
+];
+
+// Tracé tramway — coordonnées GPS réelles du corridor officiel Ville de Québec
+const TRAMWAY_LATLNGS = [
+  [46.7720,-71.3280],[46.7740,-71.3180],[46.7760,-71.3090],[46.7775,-71.2940],
+  [46.7797,-71.2762],[46.7820,-71.2980],[46.7860,-71.3060],[46.7905,-71.2750],
+  [46.7950,-71.2640],[46.8025,-71.2355],[46.8028,-71.2340],[46.8085,-71.2550],
+  [46.8095,-71.2450],[46.8125,-71.2190],[46.8140,-71.2120],[46.8155,-71.2080],
+  [46.8162,-71.2065],[46.8175,-71.2000],[46.8210,-71.2050],[46.8310,-71.2820],
+  [46.8390,-71.2340],[46.8480,-71.2680]
+];
+
+const STATIONS = [
+  {nom:"Quatre-Bourgeois",lat:46.7720,lng:-71.3280},
+  {nom:"Belvédère",lat:46.7860,lng:-71.3060},
+  {nom:"Lavigerie",lat:46.7820,lng:-71.2980},
+  {nom:"Myrand",lat:46.7775,lng:-71.2940},
+  {nom:"Université Laval",lat:46.7797,lng:-71.2762},
+  {nom:"Sainte-Foy",lat:46.7905,lng:-71.2750},
+  {nom:"Clairefontaine",lat:46.7950,lng:-71.2640},
+  {nom:"Grande-Allée",lat:46.8025,lng:-71.2355},
+  {nom:"Charest",lat:46.8085,lng:-71.2550},
+  {nom:"Saint-Roch",lat:46.8125,lng:-71.2190},
+  {nom:"Saint-Vallier",lat:46.8140,lng:-71.2120},
+  {nom:"Vieux-Québec",lat:46.8162,lng:-71.2065},
+  {nom:"Port de Québec",lat:46.8175,lng:-71.2000},
+  {nom:"Limoilou",lat:46.8210,lng:-71.2050},
+  {nom:"Hamel",lat:46.8310,lng:-71.2820},
+  {nom:"Estimauville",lat:46.8390,lng:-71.2340},
+  {nom:"Charlesbourg",lat:46.8480,lng:-71.2680}
+];
